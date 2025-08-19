@@ -1,9 +1,18 @@
+import * as Sentry from "@sentry/react";
+import { error } from "console";
+import React from "react";
+import { ReactNode } from "react";
+
 interface State {
   hasError: boolean;
 }
 
 interface ErrorBoundaryProps {
   children: ReactNode;
+}
+
+componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+  Sentry.captureException(error, { extra: errorInfo });
 }
 
 class ErrorBoundary extends React.Component<ErrorBoundaryProps, State> {
@@ -37,3 +46,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, State> {
 }
 
 export default ErrorBoundary;
+function componentDidCatch(error: any, Error: ErrorConstructor, errorInfo: any, ErrorInfo: any) {
+    throw new Error("Function not implemented.");
+}
+
